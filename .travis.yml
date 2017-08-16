@@ -1,0 +1,22 @@
+sudo: false
+dist: trusty
+
+cache:
+  directories:
+  - $HOME/builds
+
+env:
+  global:
+    - CACHE_DIR=$HOME/builds
+
+jobs:
+  include:
+    - stage: one
+      script: echo "One" > $CACHE_DIR/one
+      rvm: 2.3
+    - stage: two
+      script: echo "Two" > $CACHE_DIR/two
+      rvm: 2.3
+    - stage: three
+      script: cat $CACHE_DIR/one $CACHE_DIR/two
+      rvm: 2.3
